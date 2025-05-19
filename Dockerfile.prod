@@ -1,0 +1,20 @@
+# Dockerfile.prod
+FROM node:18-alpine
+
+# 设置工作目录
+WORKDIR /app
+
+# 拷贝所有项目文件
+COPY . .
+
+# 安装依赖
+RUN npm install
+
+# 构建生产文件
+RUN npm run build
+
+# 预览端口（默认 4173）
+EXPOSE 4173
+
+# 启动预览服务器
+CMD ["npm", "run", "preview"]

@@ -81,21 +81,49 @@ Use it in code via `import.meta.env.VITE_API_BASE_URL`.
 
 ---
 
-## 🐳 Docker Support
+## 🐳 Docker Setup & Usage
 
-### Build Image
+### 🔧 Development Mode (with Hot Reload)
 
-```bash
-docker compose build
-```
-
-### Run Container
+1. Use `Dockerfile.dev` and `docker-compose.dev.yml`:
 
 ```bash
-docker compose up
+npm run docker:dev
 ```
 
-Visit: [http://localhost:4173](http://localhost:4173)
+This runs the Vite dev server inside a container, accessible via:
+
+```
+http://localhost:5173
+```
+
+2. To stop the development container:
+
+```bash
+docker compose -f docker-compose.dev.yml down
+```
+
+---
+
+### 🚀 Production Mode (Build & Serve)
+
+1. Use `Dockerfile.prod` and `docker-compose.prod.yml`:
+
+```bash
+npm run docker:prod
+```
+
+This builds the app and serves it with `vite preview` on:
+
+```
+http://localhost:4173
+```
+
+2. To stop the production container:
+
+```bash
+docker compose -f docker-compose.prod.yml down
+```
 
 ---
 

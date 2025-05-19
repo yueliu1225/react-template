@@ -10,7 +10,9 @@
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css}\"",
 		"preview": "vite preview",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist"
+		"deploy": "gh-pages -d dist",
+		"docker:dev": "docker compose -f docker-compose.dev.yml up --build",
+		"docker:prod": "docker compose -f docker-compose.prod.yml up --build"
 	},
 	"dependencies": {
 		"-": "^0.0.1",

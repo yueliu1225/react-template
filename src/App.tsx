@@ -1,24 +1,12 @@
-import React from 'react';
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Profile from './pages/author/Profile'
 
-// const MainPage = lazy(() =>
-// 	import('./pages/Main/Main.page').then((module) => ({
-// 		default: module.MainPage
-// 	}))
-// );
-
-// export const App: React.FC = () => {
-// 	return (
-// 		<div className='bg-bg w-screen h-screen relative'>
-// 			<Suspense fallback={<Loader />}>
-// 				<Routes>
-// 					<Route path='/' element={<MainPage />} />
-// 					<Route path='settings' element={<SettingsPage />} />
-// 				</Routes>
-// 			</Suspense>
-// 		</div>
-// 	);
-// };
-
-export const App: React.FC = () => {
-	return <div>App</div>;
-};
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/author/profile" element={<Profile />} />
+    </Routes>
+  )
+}

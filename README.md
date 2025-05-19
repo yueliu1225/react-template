@@ -1,48 +1,137 @@
-# ⚡React Vite Tailwind Template
+# React Vite Template
 
-This is a modern, fast, and scalable web application template built with Vite, React, TypeScript, SCSS + Tailwind for styling, formatted with Prettier, and ready for deployment with gh-pages. It also utilizes react-router for routing. This template is designed to kickstart the project development with a solid and up-to-date tech stack.
+---
 
-## Features
+## 🚀 Tech Stack
 
-- ⚡ **Vite**: Enjoy the blazing fast build times and out-of-the-box features that Vite offers.
-- 🎨 **React**: Build your UI with the latest React features including Hooks and Context.
-- 🔒 **TypeScript**: Benefit from static type checking and the latest ECMAScript features.
-- 🌈 **SCSS + Tailwind CSS**: Use the power of SCSS and utility-first Tailwind CSS for styling your application efficiently.
-- ✨ **Prettier**: Keep your code formatted consistently with Prettier.
-- 🚀 **gh-pages**: Easily deploy your application to GitHub Pages with the gh-pages setup.
-- 🛣️ **react-router**: Utilize the de facto standard routing library for React to manage navigation in your app.
+- Vite + React 18 + TypeScript
+- React Router v6
+- Redux Toolkit + RTK Query
+- MSW (Mock Service Worker)
+- ESLint + Prettier
+- Docker
+- SCSS (no Tailwind CSS)
 
-## Getting Started
+---
 
-To get a local copy up and running follow these simple steps.
+## 📂 Project Structure (Simplified)
 
-1.Clone the repo
-
-  ```sh
-  git clone https://github.com/your_username_/Project-Name.git
+```
+src/
+├── App.tsx                # Route configuration
+├── main.tsx               # App entry, includes Redux, Router, MSW
+├── store/                 # Redux setup
+├── mocks/                 # MSW mock handlers
+├── pages/
+│   ├── Home.tsx
+│   └── author/Profile.tsx
+├── styles/
+│   └── index.scss         # Global styles
 ```
 
-2.Install NPM packages
- ```sh
+---
+
+## 📦 Getting Started
+
+### Clone Project
+
+```bash
+git clone https://github.com/yueliu1225/react-template.git my-app
+cd my-app
+```
+
+### Install Dependencies
+
+```bash
 npm install
 ```
 
-3.Start the development server
-```sh
+### Start Development Server
+
+```bash
 npm run dev
 ```
 
-## Deployment
-This project is configured to deploy to GitHub Pages using the gh-pages package.
+Visit: [http://localhost:5173](http://localhost:5173)
 
-1.Build your project
+---
 
-  ```sh
-  npm run build
+## 🧪 Mock API Support (MSW)
+
+- Define mock endpoints in `src/mocks/handlers.ts`
+- MSW is automatically enabled in development mode
+
+Example:
+
+```ts
+http.get('/api/profile', () => HttpResponse.json({ nickname: 'Yue', summary: 'Test user' }))
 ```
 
-2.Deploy it to GitHub Pages
- ```sh
-npm run deploy
+---
+
+## 🔧 Environment Variables
+
+Supports `.env.development` and `.env.production`
+
+```env
+VITE_API_BASE_URL=http://localhost:3000/api
 ```
 
+Use it in code via `import.meta.env.VITE_API_BASE_URL`.
+
+---
+
+## 🐳 Docker Support
+
+### Build Image
+
+```bash
+docker compose build
+```
+
+### Run Container
+
+```bash
+docker compose up
+```
+
+Visit: [http://localhost:4173](http://localhost:4173)
+
+---
+
+## 📐 Code Quality
+
+### ESLint + Prettier
+
+The project is preconfigured with ESLint and Prettier:
+
+```bash
+npm run lint
+npm run format
+```
+
+---
+
+## ✅ Features Implemented
+
+- ✅ Setup React Router v6
+- ✅ Added Redux Toolkit + RTK Query
+- ✅ Integrated MSW Mock API
+- ✅ Environment variable support (dev/prod)
+- ✅ Dockerfile + docker-compose support
+- ✅ Example pages: Home & author/Profile
+
+---
+
+## 🔧 Possible Extensions
+
+- 🔒 Authentication (JWT + route guards)
+- 🌐 Connect to real backend
+- 📥 File upload / Form validation
+- 🧪 Unit testing (Vitest + React Testing Library)
+
+---
+
+## 📄 License
+
+MIT

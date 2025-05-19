@@ -4,7 +4,7 @@ export const handlers = [
   http.get('/api/profile', () => {
     return HttpResponse.json({
       nickname: 'Yue',
-      summary: '测试用户，从 mock API 返回',
+      summary: 'Test user，from mock API',
     })
   }),
 ]

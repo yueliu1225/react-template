@@ -6,7 +6,7 @@ import { store } from './store'
 import { BrowserRouter } from 'react-router-dom'
 import './index.scss'
 
-// 启动 MSW mock 服务（仅开发环境）
+// Launch MSW mock（dev only）
 if (import.meta.env.DEV) {
   import('./mocks/browser').then(({ worker }) => {
     worker.start()

@@ -17,14 +17,14 @@ export default function Profile() {
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <p>加载中...</p>
-  if (error) return <p style={{ color: 'red' }}>加载失败：{error}</p>
+  if (loading) return <p>Loading...</p>
+  if (error) return <p style={{ color: 'red' }}>Loading fails：{error}</p>
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h1>个人资料</h1>
-      <p><strong>昵称：</strong> {data?.nickname}</p>
-      <p><strong>简介：</strong> {data?.summary}</p>
+      <h1>My Profile</h1>
+      <p><strong>Nickname:</strong> {data?.nickname}</p>
+      <p><strong>Summary:</strong> {data?.summary}</p>
     </div>
   )
 }

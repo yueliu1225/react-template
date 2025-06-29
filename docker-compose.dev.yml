@@ -11,3 +11,15 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - next-server
+  next-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mysql://root:mju7MJU&@host.docker.internal:3306/hub

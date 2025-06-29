@@ -4,29 +4,49 @@
 
 ## 🚀 Tech Stack
 
-- Vite + React 18 + TypeScript
-- React Router v6
-- Redux Toolkit + RTK Query
-- MSW (Mock Service Worker)
-- ESLint + Prettier
-- Docker
-- SCSS (no Tailwind CSS)
+A modern fullstack project template using:
+
+⚡ Vite + React 18 + TypeScript
+
+📦 Redux Toolkit + RTK Query
+
+🧭 React Router v6
+
+🧪 MSW (Mock Service Worker)
+
+🧹 ESLint + Prettier
+
+🐳 Docker
+
+🔁 Git
+
+🌐 Next.js (API server) + Prisma + MySQL
 
 ---
 
 ## 📂 Project Structure (Simplified)
 
 ```
-src/
-├── App.tsx                # Route configuration
-├── main.tsx               # App entry, includes Redux, Router, MSW
-├── store/                 # Redux setup
-├── mocks/                 # MSW mock handlers
-├── pages/
-│   ├── Home.tsx
-│   └── author/Profile.tsx
-├── styles/
-│   └── index.scss         # Global styles
+├── app/                  # Frontend React app
+│   ├── src/
+│   ├── public/
+│   ├── index.html
+│   ├── main.tsx
+│   ├── App.tsx
+│   ├── ...
+│   └── Dockerfile
+├── server/               # Next.js API server with Prisma
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── pages/api/
+│   ├── lib/
+│   │   └── prisma.ts
+│   └── ...
+├── docker-compose.yml
+├── .env
+├── .eslintrc.cjs
+├── .prettierrc
+└── README.md
 ```
 
 ---

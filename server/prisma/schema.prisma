@@ -12,3 +12,299 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model mo_article {
+  id             Int      @id @default(autoincrement())
+  column_id      Int?
+  title          String   @db.VarChar(255)
+  summary        String?  @db.Text
+  tags           Json?
+  content        String?  @db.LongText
+  views          Int      @default(0)
+  praises        Int      @default(0)
+  collects       Int      @default(0)
+  comments       Int      @default(0)
+  state          Boolean  @default(true)
+  top_time       DateTime?
+  create_time    DateTime?
+  update_time    DateTime?
+  delete_time    DateTime?
+  publish_time   DateTime?
+  author_top_time DateTime?
+  attachments    Json?
+}
+
+model mo_user {
+  id                Int       @id @default(autoincrement())
+  mobile            String    @default("") @db.VarChar(100)
+  email             String    @default("") @db.VarChar(255)
+  password          String    @db.VarChar(100)
+  nickname          String    @default("") @db.VarChar(255)
+  avatar            String    @default("") @db.VarChar(255)
+  gender            Int       @default(3)
+  org_type          Boolean   @default(true)
+  org_title         String    @default("") @db.VarChar(255)
+  praises           Int       @default(0)
+  follows           Int       @default(0)
+  fans              Int       @default(0)
+  topics            Int       @default(0)
+  articles          Int       @default(0)
+  state             Int       @default(0)
+  summary           String    @default("") @db.VarChar(255)
+  manager_role_id   Int       @default(0)
+  token             String    @default("") @db.VarChar(255)
+  token_time        Int       @default(0)
+  create_time       DateTime?
+  update_time       DateTime?
+  delete_time       DateTime?
+  curr_duration     Int?      @default(0)
+  max_duration      Int?      @default(0)
+  last_sign_in_date DateTime? @default(dbgenerated("1990-01-01 00:00:00"))
+  points            Int?      @default(0)
+}
+
+model mo_column {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  title       String   @default("") @db.VarChar(255)
+  summary     String?  @db.Text
+  thumbnail   String   @default("") @db.VarChar(255)
+  collects    Int      @default(0)
+  articles    Int      @default(0)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_topic {
+  id          Int      @id @default(autoincrement())
+  uid         Int?
+  title       String   @db.VarChar(255)
+  summary     String?  @db.Text
+  tags        Json?
+  content     String?  @db.LongText
+  views       Int      @default(0)
+  praises     Int      @default(0)
+  collects    Int      @default(0)
+  comments    Int      @default(0)
+  state       Boolean  @default(true)
+  top_time    DateTime?
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+  publish_time DateTime?
+  attachments Json?
+}
+
+model mo_attachments {
+  id             Int      @id @default(autoincrement())
+  uid            Int?
+  file           String?  @db.VarChar(255)
+  file_name      String?  @db.VarChar(255)
+  file_size      String?  @db.VarChar(255)
+  file_extension String?  @db.VarChar(255)
+  create_time    DateTime?
+  delete_time    DateTime?
+  update_time    DateTime?
+  parent_id      Int?
+}
+
+model mo_badge {
+  id   Int    @id
+  name String @db.Text
+}
+
+model mo_badge_history {
+  id          Int      @id @default(autoincrement())
+  user_id     Int?
+  badge_id    Int?
+  create_time DateTime?
+}
+
+model mo_banner {
+  id          Int      @id @default(autoincrement())
+  image       String   @db.VarChar(255)
+  link_url    String   @default("") @db.VarChar(255)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+  is_visible  Boolean?
+}
+
+model mo_collect {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  type        String   @db.VarChar(255)
+  type_id     Int
+  is_valid    Boolean  @default(true)
+  title       String   @db.VarChar(255)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_column_request {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  title       String   @db.VarChar(255)
+  thumbnail   String   @default("") @db.VarChar(255)
+  summary     String?  @db.Text
+  state       Int      @default(-1)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_comment {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  type        String   @default("") @db.VarChar(255)
+  type_id     Int
+  comment_id  Int
+  reply_uid   Int
+  content     String   @db.Text
+  praises     Int      @default(0)
+  ip          String   @default("") @db.VarChar(200)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_follow {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  type_id     Int
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_invite_code {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  code        String   @db.VarChar(255)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+  contact     String?  @db.VarChar(255)
+}
+
+model mo_log {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  type        String   @default("") @db.VarChar(255)
+  content     String?  @db.Text
+  success     Int      @default(0)
+  ip          String   @default("") @db.VarChar(255)
+  manage      Boolean  @default(false)
+  create_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_manager_role {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  permissions Json?
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_notice {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  category    String?  @default("") @db.VarChar(20)
+  content     String?  @db.Text
+  send_uid    Int
+  is_new      Boolean  @default(true)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_page {
+  id          Int      @id @default(autoincrement())
+  url         String   @db.VarChar(255)
+  is_nav      Boolean  @default(false)
+  is_show     Boolean  @default(false)
+  title       String   @default("") @db.VarChar(255)
+  content     Json?
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_praise {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  type        String   @default("") @db.VarChar(255)
+  type_id     Int
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_report {
+  id          Int      @id @default(autoincrement())
+  uid         Int
+  type        String   @default("") @db.VarChar(255)
+  type_id     Int
+  category    Int      @default(0)
+  summary     String?  @db.Text
+  state       Int      @default(-1)
+  type_data   Json?
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_setting {
+  id             Int      @id @default(autoincrement())
+  title          String   @default("") @db.VarChar(255)
+  title_en       String   @default("") @db.VarChar(255)
+  keywords       String   @default("") @db.VarChar(255)
+  keywords_en    String   @default("") @db.VarChar(255)
+  description    String   @default("") @db.VarChar(255)
+  description_en String   @default("") @db.VarChar(255)
+  logo           String   @default("") @db.VarChar(255)
+  logo2          String   @default("") @db.VarChar(255)
+  favicon        String   @default("") @db.VarChar(255)
+  footer         Json?
+  smtp           Json?
+  i18n           String?  @db.Text
+}
+
+model mo_signin_history {
+  id          Int      @id @default(autoincrement())
+  uid         Int?
+  create_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_tags {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+  is_top      Boolean?
+}
+
+model mo_vcode {
+  id          Int      @id @default(autoincrement())
+  account     String?  @db.VarChar(255)
+  code        String   @db.VarChar(255)
+  ip          String   @default("") @db.VarChar(255)
+  create_time DateTime?
+  update_time DateTime?
+  delete_time DateTime?
+}
+
+model mo_views {
+  id          Int      @id @default(autoincrement())
+  uid         Int?
+  content_type String? @db.VarChar(255)
+  content_id  Int?
+  create_time DateTime?
+  delete_time DateTime?
+}
